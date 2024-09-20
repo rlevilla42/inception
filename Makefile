@@ -11,7 +11,7 @@
 # **************************************************************************** #
 all:
 	up
-up: docker compose -f ./srcs/docker-compose.yaml --build -d up
+up: docker compose -f ./srcs/docker-compose.yaml up -d --build
 down: docker compose -f ./srcs/docker-compose.yaml down
 stop: docker compose -f ./src/docker-compose.yml stop
 rm: stop
