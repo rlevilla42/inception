@@ -6,13 +6,15 @@
 #    By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 13:41:06 by rlevilla          #+#    #+#              #
-#    Updated: 2023/11/27 21:08:39 by rlevilla         ###   ########.fr        #
+#    Updated: 2024/10/06 01:02:56 by rlevilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-all:
-	up
-up: docker compose -f ./srcs/docker-compose.yaml up -d --build
-down: docker compose -f ./srcs/docker-compose.yaml down
-stop: docker compose -f ./src/docker-compose.yml stop
-rm: stop
-	docker compose -f ./srcs/docker-compose.yaml rm
+all: up
+up:
+	docker compose -f ./srcs/docker-compose.yml up --build -d
+down:
+	docker compose -f ./srcs/docker-compose.yml down
+stop:
+	docker compose -f ./src/docker-compose.yml stop
+rm: down
+	docker system -f ./srcs/docker-compose.yaml prune -a

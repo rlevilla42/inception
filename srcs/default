@@ -89,11 +89,3 @@ server {
 #		try_files  / =404;
 #	}
 #}
-server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
-	server_name         default_server;
-	ssl_certificate     /etc/ssl/certs/selfsigned.crt;
-	ssl_certificate_key /etc/ssl/private/selfsigned.key;
-	ssl_protocols       TLSv1.3;
-}
