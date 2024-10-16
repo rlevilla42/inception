@@ -21,3 +21,4 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 #Interact with a container
 docker run -it <container name> /bin/bash
+docker compose up --build -d

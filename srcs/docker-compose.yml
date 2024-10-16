@@ -4,32 +4,53 @@ services:
     container_name: nginx
     ports:
       - 443:443
-      - 80:80
     restart: always
     networks:
       - inception
     volumes:
       - ./web:/var/www/html
   wordpress:
+    depends_on:
+      - mariadb
     build: ./requirements/wordpress/.
     container_name: wordpress
-    ports:
-      - "9000:9000"
+    expose:
+      - "9000"
     restart: always
     networks:
       - inception
     volumes:
       - ./web:/var/www/html
+    env_file:
+      - .env
+    #environment:
+    #  - WP_HOME_URL=${WP_HOME_URL}
+    #  - WP_HOST=${WP_HOST}
+    #  - WP_ADMIN_USER=${WP_ADMIN_USER}
+    #  - WP_BLOG_TITLE=${WP_BLOG_TITLE}
+    #  - WP_ADMIN_PASS=${WP_ADMIN_PASS}
+    #  - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
+    #  - WP_USER=${WP_USER}
+    #  - WP_USER_PASS=${WP_USER_PASS}
+    #  - WP_USER_EMAIL=${WP_USER_EMAIL}
   mariadb:
     build: ./requirements/mariadb/.
     container_name: mariadb
     ports:
-      - 3306:3306
+      - "3306"
     restart: always
     networks:
       - inception
     volumes:
       - ./web:/var/www/html
+    env_file:
+      - .env
+    environment:
+      - MYSQL_DB=${MYSQL_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASS=${MYSQL_PASS}
+      - MYSQL_ROOT_PASS=${MYSQL_ROOT_PASS}
+      - MYSQL_HOST=${MYSQL_HOST}
 
 networks:
   inception:

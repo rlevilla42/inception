@@ -6,7 +6,7 @@
 #    By: rlevilla <marvin@42lausanne.ch>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 13:41:06 by rlevilla          #+#    #+#              #
-#    Updated: 2024/10/06 01:02:56 by rlevilla         ###   ########.fr        #
+#    Updated: 2024/10/06 20:52:05 by rlevilla         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 all: up
@@ -17,4 +17,4 @@ down:
 stop:
 	docker compose -f ./src/docker-compose.yml stop
 rm: down
-	docker system -f ./srcs/docker-compose.yaml prune -a
+	docker system prune -a
