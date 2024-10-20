@@ -15,7 +15,7 @@ services:
     build: ./requirements/wordpress/.
     container_name: wordpress
     expose:
-      - "9000"
+      - 9000
     restart: always
     networks:
       - inception
@@ -30,7 +30,7 @@ services:
     build: ./requirements/mariadb/.
     container_name: mariadb
     ports:
-      - 3306:3306
+      - 3306
     restart: always
     networks:
       - inception
