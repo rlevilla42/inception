@@ -1,0 +1,47 @@
+services:
+  nginx:
+    build: ./requirements/nginx/.
+    container_name: nginx
+    ports:
+      - 443:443
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - ./web:/var/www/html
+  wordpress:
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress/.
+    container_name: wordpress
+    expose:
+      - "9000"
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - ./web:/var/www/html
+    environment:
+    - WORDPRESS_DB_HOST=mariadb
+    - WORDPRESS_DB_USER=buakaw
+    - WORDPRESS_DB_PASSWORD=buakaw
+    - WORDPRESS_DB_NAME=db_wordpress
+  mariadb:
+    build: ./requirements/mariadb/.
+    container_name: mariadb
+    ports:
+      - 3306:3306
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - ./web:/var/www/html
+    environment:
+    - MYSQL_ROOT_PASSWORD=buakaw
+    - MYSQL_USER=buakaw
+    - MYSQL_PASSWORD=buakaw
+    - MYSQL_DATABASE=db_wordpress
+
+networks:
+  inception:
+    driver: bridge
