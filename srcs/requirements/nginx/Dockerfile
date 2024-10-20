@@ -8,4 +8,4 @@ COPY nginx.conf /etc/nginx/nginx.conf
 #COPY script.sh .
 #RUN bash script.sh
 #CMD ["bash", "script.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;

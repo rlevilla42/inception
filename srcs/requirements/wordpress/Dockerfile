@@ -9,4 +9,4 @@ COPY www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY wp-config.sh .
 #RUN bash wp-config.sh
 EXPOSE 9000
-CMD ["php-fpm7.4", "-F"]
+CMD ["php-fpm7.4", "-F
